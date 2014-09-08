@@ -3,3 +3,13 @@
 /.idea/workspace.xml
 .DS_Store
 /build
+
+gradlew
+settings.gradle
+DianDi1.1.iml
+build.gradle
+local.properties
+gradlew.bat
+gradle.properties
+build
+gradle
