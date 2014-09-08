@@ -154,34 +154,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    // Add your public helper methods to access and get content from the database.
-    // You could return cursors by doing "return myDataBase.query(....)" so it'd be easy
-    // to you to create adapters for your views.
 }
-
-/*
-  下面就可以使用 该 类实现数据库的操作了
-      调用即可
-      资源文件放在exploded-aar/assets 目录下
-
-
-  protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        DatabaseHelper myDbHelper = new DatabaseHelper(null);
-        myDbHelper=new DatabaseHelper(this);
-        try{
-            myDbHelper.createDataBase();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        try {
-            myDbHelper.openDataBase();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-
-    }*/

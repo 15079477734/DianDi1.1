@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.1.0"
+    buildToolsVersion '19.1.0'
 
     defaultConfig {
         applicationId "com.bmob.im.demo"
@@ -33,4 +33,5 @@ dependencies {
     compile files('C:/Users/Administrator/Desktop/diandi/DianDi1.1/libs/photoview-library-1.2.2.jar')
     compile files('C:/Users/Administrator/Desktop/diandi/DianDi1.1/libs/umeng-update-v2.4.2.jar')
     compile files('C:/Users/Administrator/Desktop/diandi/DianDi1.1/libs/universal-image-loader-1.9.2_sources.jar')
+    compile project(':widget')
 }
