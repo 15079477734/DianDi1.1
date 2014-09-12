@@ -29,7 +29,7 @@ public class WritePlanActivity extends BaseActivity {
 
     private final String TAG = "write";
     private final Calendar mCalendar = Calendar.getInstance();
-    Plan mPlan;
+    private Plan mPlan;
     private EditText mTitleEdit;
     private RelativeLayout mTitleLayout;
     private TextView mDateText;
@@ -180,6 +180,14 @@ public class WritePlanActivity extends BaseActivity {
 
 
         private String tag = "";
+
+        @Override
+        public void onClick(View view) {
+            TimePickerDialog timePickerDialog = TimePickerDialog.newInstance(
+                    timeSetListener, mTimeHour, mTimeMinute, false);
+            timePickerDialog.show(getFragmentManager(), tag);
+        }
+
         private TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(RadialPickerLayout view, int hourOfDay,
@@ -191,13 +199,6 @@ public class WritePlanActivity extends BaseActivity {
                 notifyTimeTextView();
             }
         };
-
-        @Override
-        public void onClick(View view) {
-            TimePickerDialog timePickerDialog = TimePickerDialog.newInstance(
-                    timeSetListener, mTimeHour, mTimeMinute, false);
-            timePickerDialog.show(getFragmentManager(), tag);
-        }
 
 
     }

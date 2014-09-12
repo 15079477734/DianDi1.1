@@ -1,12 +1,10 @@
 package com.bmob.im.demo.ui.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import com.bmob.im.demo.R;
@@ -25,11 +23,12 @@ import com.bmob.im.demo.db.DBUtils;
  */
 
 
-public class PlanFragment extends Fragment {
+public class PlanFragment extends BaseFragment {
 
+    DBUtils mDBUtils;
     private ListView mPlanListView;
     private View mView;
-    private BaseAdapter mPlanAdapter;
+    private PlanAdapter mPlanAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,36 +39,46 @@ public class PlanFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
         mView = layoutInflater.inflate(R.layout.activity_my_list, null);
-        findView();
-        initView();
+
         return mView;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        findView();
+        initView();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        mPlanAdapter.setList(mDBUtils.getSortPlans());
     }
 
-    private void findView() {
+    @Override
+    void findView() {
         mPlanListView = (ListView) mView.findViewById(android.R.id.list);
     }
 
-    private void initView() {
-        DBUtils dbUtils = new DBUtils(getActivity());
-        mPlanAdapter = new PlanAdapter(getActivity(), dbUtils.getSortPlans());
-        mPlanListView.setAdapter(mPlanAdapter);
+    @Override
+    void initData() {
     }
 
-    private void bindEvent() {
+    @Override
+    void initView() {
+        mDBUtils = new DBUtils(getActivity());
+        mPlanAdapter = new PlanAdapter(getActivity(), mDBUtils.getSortPlans());
+        mPlanListView.setAdapter(mPlanAdapter);
+        bindEvent();
+    }
+
+    @Override
+    void bindEvent() {
         mPlanListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int position, long id) {
+
 
             }
         });

@@ -4,18 +4,18 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bmob.im.demo.R;
-import com.bmob.im.demo.util.PixelUtil;
 
-/** 自定义头部布局
+/**
+ * 自定义头部布局
+ *
+ * @author smile
  * @ClassName: HeaderLayout
  * @Description: TODO
- * @author smile
  * @date 2014-5-19 下午2:30:30
  */
 public class HeaderLayout extends LinearLayout {
@@ -25,16 +25,12 @@ public class HeaderLayout extends LinearLayout {
     private LinearLayout mLayoutRightContainer;
     private TextView mHtvSubTitle;
     private LinearLayout mLayoutRightImageButtonLayout;
-    private Button mRightImageButton;
+    private ImageButton mRightImageButton;
     private onRightImageButtonClickListener mRightImageButtonClickListener;
 
     private LinearLayout mLayoutLeftImageButtonLayout;
     private ImageButton mLeftImageButton;
     private onLeftImageButtonClickListener mLeftImageButtonClickListener;
-
-    public enum HeaderStyle {// 头部整体样式
-        DEFAULT_TITLE, TITLE_LIFT_IMAGEBUTTON, TITLE_RIGHT_IMAGEBUTTON, TITLE_DOUBLE_IMAGEBUTTON;
-    }
 
     public HeaderLayout(Context context) {
         super(context);
@@ -123,7 +119,7 @@ public class HeaderLayout extends LinearLayout {
         mLayoutRightContainer.addView(mRightImageButtonView);
         mLayoutRightImageButtonLayout = (LinearLayout) mRightImageButtonView
                 .findViewById(R.id.header_layout_imagebuttonlayout);
-        mRightImageButton = (Button) mRightImageButtonView
+        mRightImageButton = (ImageButton) mRightImageButtonView
                 .findViewById(R.id.header_ib_imagebutton);
         mLayoutRightImageButtonLayout.setOnClickListener(new OnClickListener() {
 
@@ -136,19 +132,22 @@ public class HeaderLayout extends LinearLayout {
         });
     }
 
-    /** 获取右边按钮
-     * @Title: getRightImageButton
-     * @Description: TODO
+    /**
+     * 获取右边按钮
+     *
      * @param @return
      * @return Button
      * @throws
+     * @Title: getRightImageButton
+     * @Description: TODO
      */
-    public Button getRightImageButton(){
-        if(mRightImageButton!=null){
+    public ImageButton getRightImageButton() {
+        if (mRightImageButton != null) {
             return mRightImageButton;
         }
         return null;
     }
+
     public void setDefaultTitle(CharSequence title) {
         if (title != null) {
             mHtvSubTitle.setText(title);
@@ -157,15 +156,12 @@ public class HeaderLayout extends LinearLayout {
         }
     }
 
-    public void setTitleAndRightButton(CharSequence title, int backid,String text,
+    public void setTitleAndRightButton(CharSequence title, int backid, String text,
                                        onRightImageButtonClickListener onRightImageButtonClickListener) {
         setDefaultTitle(title);
         mLayoutRightContainer.setVisibility(View.VISIBLE);
         if (mRightImageButton != null && backid > 0) {
-            mRightImageButton.setWidth(PixelUtil.dp2px(45));
-            mRightImageButton.setHeight(PixelUtil.dp2px(40));
-            mRightImageButton.setBackgroundResource(backid);
-            mRightImageButton.setText(text);
+            mRightImageButton.setImageResource(backid);
             setOnRightImageButtonClickListener(onRightImageButtonClickListener);
         }
     }
@@ -175,10 +171,7 @@ public class HeaderLayout extends LinearLayout {
         setDefaultTitle(title);
         mLayoutRightContainer.setVisibility(View.VISIBLE);
         if (mRightImageButton != null && backid > 0) {
-            mRightImageButton.setWidth(PixelUtil.dp2px(20));
-            mRightImageButton.setHeight(PixelUtil.dp2px(20));
-            mRightImageButton.setTextColor(getResources().getColor(R.color.transparent));
-            mRightImageButton.setBackgroundResource(backid);
+            mRightImageButton.setImageResource(backid);
             setOnRightImageButtonClickListener(onRightImageButtonClickListener);
         }
     }
@@ -198,13 +191,17 @@ public class HeaderLayout extends LinearLayout {
         mRightImageButtonClickListener = listener;
     }
 
-    public interface onRightImageButtonClickListener {
-        void onClick();
-    }
-
     public void setOnLeftImageButtonClickListener(
             onLeftImageButtonClickListener listener) {
         mLeftImageButtonClickListener = listener;
+    }
+
+    public enum HeaderStyle {// 头部整体样式
+        DEFAULT_TITLE, TITLE_LIFT_IMAGEBUTTON, TITLE_RIGHT_IMAGEBUTTON, TITLE_DOUBLE_IMAGEBUTTON;
+    }
+
+    public interface onRightImageButtonClickListener {
+        void onClick();
     }
 
     public interface onLeftImageButtonClickListener {

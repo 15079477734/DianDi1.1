@@ -17,6 +17,6 @@
         android:clickable="false"
         android:contentDescription="@string/app_name"
         android:focusable="false"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerInside"/>
 
 </LinearLayout>

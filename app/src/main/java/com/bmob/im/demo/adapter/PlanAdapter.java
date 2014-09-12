@@ -17,7 +17,6 @@ import com.bmob.im.demo.util.util.Calculator;
 import com.bmob.im.demo.util.util.Format;
 import com.bmob.im.demo.util.util.MemoryCache;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,10 +32,13 @@ import java.util.List;
 
 public class PlanAdapter extends BaseListAdapter<Plan> {
 
-    List<Plan> mPlans = new ArrayList<Plan>();
-
     public PlanAdapter(Context context, List<Plan> list) {
         super(context, list);
+    }
+
+    @Override
+    public void setList(List<Plan> list) {
+        super.setList(list);
     }
 
     @Override
@@ -60,14 +62,14 @@ public class PlanAdapter extends BaseListAdapter<Plan> {
         dueText = ViewHolder.get(contentView, R.id.item_plan_due_text);
 
 
-        String title = mPlans.get(position).getTitle();
+        String title = list.get(position).getTitle();
 
-        String dueTime = Format.getDueTimeString(mPlans.get(position).getPlanDate());
+        String dueTime = Format.getDueTimeString(list.get(position).getPlanDate());
 
 
         int day = Calculator.calculate(dueTime);
 
-        progressText.setText(mPlans.get(position).getProgress() + "%");
+        progressText.setText(list.get(position).getProgress() + "%");
         dueText.setText(dueTime);
         if (day < 0) {
             titleText.setText(title + "已经");
@@ -77,7 +79,7 @@ public class PlanAdapter extends BaseListAdapter<Plan> {
         timeText.setText(String.valueOf(Math.abs(day)) + "天");
 
         int imageResId;
-        int t = mPlans.get(position).get_id();
+        int t = list.get(position).get_id();
         switch (t) {
             case 1:
                 imageResId = R.drawable.cover_bg4;
