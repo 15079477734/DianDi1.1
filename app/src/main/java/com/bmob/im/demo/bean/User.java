@@ -55,6 +55,19 @@ public class User extends BmobChatUser {
     private String school;
     private BmobRelation favorite;
     private BmobFile avatarImg;
+    private boolean V;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public boolean isV() {
+        return V;
+    }
+
+    public void setV(boolean v) {
+        V = v;
+    }
 
     public String getSchool() {
         return school;
@@ -62,11 +75,6 @@ public class User extends BmobChatUser {
 
     public void setSchool(String school) {
         this.school = school;
-    }
-
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
     }
 
     public String getSignature() {

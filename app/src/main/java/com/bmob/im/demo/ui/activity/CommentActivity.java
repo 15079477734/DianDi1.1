@@ -59,32 +59,25 @@ import cn.bmob.v3.listener.UpdateListener;
 
 public class CommentActivity extends ActivityBase implements View.OnClickListener {
 
+    public DianDi mDianDi;
+    boolean isFav = false;
     private ListView commentList;
     private TextView footer;
-
     private EditText commentContent;
     private Button commentCommit;
-
     private TextView userName;
     private TextView commentItemContent;
     private ImageView commentItemImage;
-
     private ImageView userLogo;
     private ImageView myFav;
     private TextView comment;
     private TextView share;
     private TextView love;
     private TextView hate;
-
-    public DianDi mDianDi;
     private String commentEdit = "";
-
     private CommentAdapter mAdapter;
-
     private List<Comment> comments = new ArrayList<Comment>();
-
     private int pageNum;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -324,7 +317,6 @@ public class CommentActivity extends ActivityBase implements View.OnClickListene
         fetchData();
     }
 
-
     private void onClickCommit() {
         // TODO Auto-generated method stub
         User currentUser = BmobUser.getCurrentUser(this, User.class);
@@ -347,19 +339,21 @@ public class CommentActivity extends ActivityBase implements View.OnClickListene
 
     private void publishComment(User user, String content) {
 
+        commentCommit.setEnabled(false);
         final Comment comment = new Comment();
         comment.setUser(user);
         comment.setCommentContent(content);
         comment.save(this, new SaveListener() {
 
+
             @Override
             public void onSuccess() {
-                // TODO Auto-generated method stub
                 ActivityUtil.show(CommentActivity.this, "评论成功。");
                 if (mAdapter.getDataList().size() < Constant.NUMBERS_PER_PAGE) {
                     mAdapter.getDataList().add(comment);
                     mAdapter.notifyDataSetChanged();
                     setListViewHeightBasedOnChildren(commentList);
+                    commentCommit.setEnabled(true);
                 }
                 commentContent.setText("");
                 hideSoftInput();
@@ -379,7 +373,6 @@ public class CommentActivity extends ActivityBase implements View.OnClickListene
 
                     @Override
                     public void onFailure(int arg0, String arg1) {
-                        // TODO Auto-generated method stub
                         LogUtils.i(TAG, "更新评论失败。" + arg1);
                     }
                 });
@@ -388,7 +381,7 @@ public class CommentActivity extends ActivityBase implements View.OnClickListene
 
             @Override
             public void onFailure(int arg0, String arg1) {
-                // TODO Auto-generated method stub
+                commentCommit.setEnabled(true);
                 ActivityUtil.show(CommentActivity.this, "评论失败。请检查网络~");
             }
         });
@@ -471,8 +464,6 @@ public class CommentActivity extends ActivityBase implements View.OnClickListene
             startActivityForResult(intent, Constant.GET_FAVOURITE);
         }
     }
-
-    boolean isFav = false;
 
     private void onClickLove() {
         // TODO Auto-generated method stub

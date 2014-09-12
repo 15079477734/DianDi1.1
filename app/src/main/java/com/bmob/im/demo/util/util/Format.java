@@ -1,5 +1,8 @@
 package com.bmob.im.demo.util.util;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Created by Administrator on 2014/7/16.
  */
@@ -48,4 +51,38 @@ public class Format {
             return " AM";
     }
 
+    public static String week2String(int week) {
+        switch (week) {
+            case 1:
+                return "日";
+            case 2:
+                return "一";
+            case 3:
+                return "二";
+            case 4:
+                return "三";
+            case 5:
+                return "四";
+            case 6:
+                return "五";
+            case 7:
+                return "六";
+
+            default:
+                return "";
+        }
+    }
+
+    public static String getDueTimeString(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        ;
+        try {
+            calendar.setTime(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String dateString = Format.pad(calendar.get(Calendar.YEAR)) + "-" + Format.pad(calendar.get(Calendar.MONTH) + 1) + "-" + Format.pad(calendar.get(Calendar.DAY_OF_MONTH)
+        ) + "  星期" + Format.week2String(calendar.get(Calendar.DAY_OF_WEEK));
+        return dateString;
+    }
 }

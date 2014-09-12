@@ -6,13 +6,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import cn.bmob.im.BmobChatManager;
-import cn.bmob.im.BmobNotifyManager;
-import cn.bmob.im.bean.BmobInvitation;
-import cn.bmob.im.bean.BmobMsg;
-import cn.bmob.im.db.BmobDB;
-import cn.bmob.im.inteface.EventListener;
-import cn.bmob.v3.update.BmobUpdateAgent;
 
 import com.bmob.im.demo.CustomApplication;
 import com.bmob.im.demo.MyMessageReceiver;
@@ -22,14 +15,22 @@ import com.bmob.im.demo.ui.fragment.DianDiFragment;
 import com.bmob.im.demo.ui.fragment.RecentFragment;
 import com.bmob.im.demo.ui.fragment.SettingsFragment;
 
+import cn.bmob.im.BmobChatManager;
+import cn.bmob.im.BmobNotifyManager;
+import cn.bmob.im.bean.BmobInvitation;
+import cn.bmob.im.bean.BmobMsg;
+import cn.bmob.im.db.BmobDB;
+import cn.bmob.im.inteface.EventListener;
+
 /**
  * 登陆
+ *
+ * @author smile
  * @ClassName: MainActivity
  * @Description: TODO
- * @author smile
  * @date 2014-5-29 下午2:45:35
  */
-public class MainActivity extends ActivityBase implements EventListener{
+public class MainActivity extends ActivityBase implements EventListener {
 
     private static long firstTime;
     ImageView iv_recent_tips, iv_contact_tips, iv_diandi_tips;//消息提示
@@ -76,6 +77,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 
     /**
      * button点击事件
+     *
      * @param view
      */
     public void onTabSelect(View view) {

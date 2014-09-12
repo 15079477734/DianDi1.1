@@ -16,9 +16,6 @@ import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ext.SatelliteMenu;
-import android.view.ext.SatelliteMenu.SateliteClickedListener;
-import android.view.ext.SatelliteMenuItem;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
@@ -29,7 +26,6 @@ import com.bmob.im.demo.bean.DianDi;
 import com.bmob.im.demo.config.Constant;
 import com.bmob.im.demo.db.DatabaseUtil;
 import com.bmob.im.demo.ui.activity.CommentActivity;
-import com.bmob.im.demo.ui.activity.MyActivity;
 import com.bmob.im.demo.ui.activity.NewDiandiActivity;
 import com.bmob.im.demo.util.LogUtils;
 import com.bmob.im.demo.view.HeaderLayout.onRightImageButtonClickListener;
@@ -47,19 +43,14 @@ import cn.bmob.v3.listener.FindListener;
 
 
 public class DianDiFragment extends BaseFragment implements XListView.IXListViewListener, AdapterView.OnItemClickListener {
+    private final Calendar mCalendar = Calendar.getInstance();
     private ArrayList<DianDi> mListItems;
     private AIContentAdapter mAdapter;
-
     private XListView mListView;
     private TextView networkTips;
-    private SatelliteMenu menu;
     private View mView;
-
-
     private int pageNum;
     private String lastItemTime;
-
-    private final Calendar mCalendar = Calendar.getInstance();
     private int hourOfDay = mCalendar.get(Calendar.HOUR_OF_DAY);
     private int minute = mCalendar.get(Calendar.MINUTE);
 
@@ -85,8 +76,8 @@ public class DianDiFragment extends BaseFragment implements XListView.IXListView
 
     void findView() {
         mListView = (XListView) findViewById(R.id.fragment_diandi_list);
-        networkTips = (TextView) findViewById(R.id.networkTips);
-        menu = (SatelliteMenu) findViewById(R.id.menu);
+        networkTips = (TextView) findViewById(R.id.fragment_diandi_networktips);
+
     }
 
     public void initView() {
@@ -99,14 +90,7 @@ public class DianDiFragment extends BaseFragment implements XListView.IXListView
             }
         });
         initXListView();
-        List<SatelliteMenuItem> items = new ArrayList<SatelliteMenuItem>();
-        items.add(new SatelliteMenuItem(1, R.drawable.ic_1));
-        items.add(new SatelliteMenuItem(2, R.drawable.ic_2));
-        items.add(new SatelliteMenuItem(3, R.drawable.ic_3));
-        items.add(new SatelliteMenuItem(4, R.drawable.ic_4));
-        items.add(new SatelliteMenuItem(5, R.drawable.ic_5));
-        items.add(new SatelliteMenuItem(6, R.drawable.ic_6));
-        menu.addItems(items);
+
         bindEvent();
     }
 
@@ -133,16 +117,7 @@ public class DianDiFragment extends BaseFragment implements XListView.IXListView
 
     void bindEvent() {
 
-        menu.setOnItemClickedListener(new SateliteClickedListener() {
 
-            public void eventOccured(int id) {
-                ShowToast("Clicked on " + id);
-                switch (id) {
-                    case 1:
-           getActivity().startActivity(new Intent(getActivity(),MyActivity.class));
-                }
-            }
-        });
     }
 
 

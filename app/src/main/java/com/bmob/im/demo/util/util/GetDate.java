@@ -12,13 +12,13 @@ public class GetDate {
 
     public static String getDatetimeString(Date date) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return format.format(date)+getWeek();
+        return format.format(date);
     }
 
     public static String getDatetimeString() {
         Date date = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return format.format(date)+" "+getWeek();
+        return format.format(date) + " " + getWeek();
     }
 
     public static String getDate() {
@@ -43,10 +43,10 @@ public class GetDate {
         } else if ("7".equals(mWay)) {
             mWay = "六";
         }
-        if(c.get(Calendar.MONTH) + 1<10)
-            mMonth="0"+mMonth;
-        if(c.get(Calendar.DAY_OF_MONTH)<10)
-            mDay="0"+mDay;
+        if (c.get(Calendar.MONTH) + 1 < 10)
+            mMonth = "0" + mMonth;
+        if (c.get(Calendar.DAY_OF_MONTH) < 10)
+            mDay = "0" + mDay;
         System.out.printf("");
         String str = mYear + "-" + mMonth + "-" + mDay + " " + "星期" + mWay;
         System.out.printf(str);
@@ -78,14 +78,14 @@ public class GetDate {
     }
 
     public static String getWeek(int year, int monthOfYear, int dayOfMonth) {
-        int y = year-2000;
+        int y = year - 2000;
         int m = monthOfYear + 1;
         int c = 20;
         int d = dayOfMonth;
         int w = y + y / 4 + c / 4 - 2 * c + 26 * (m + 1) / 10 + d - 1;
         String myWeek = null;
 
-        switch (w%7) {
+        switch (w % 7) {
             case 0:
                 myWeek = "天";
                 break;
@@ -113,13 +113,13 @@ public class GetDate {
 
         return "星期" + myWeek;
     }
-    public static String getMonthOfYear(String month)
-    {
 
-        int m=Integer.valueOf(month)+1;
-        if(m<13&&m>0)
-        return  String.valueOf(m);
-        else return  null;
+    public static String getMonthOfYear(String month) {
+
+        int m = Integer.valueOf(month) + 1;
+        if (m < 13 && m > 0)
+            return String.valueOf(m);
+        else return null;
     }
 }
 

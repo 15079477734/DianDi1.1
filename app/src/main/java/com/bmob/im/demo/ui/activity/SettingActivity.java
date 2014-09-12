@@ -94,7 +94,6 @@ public class SettingActivity extends ActivityBase implements View.OnClickListene
 
     @Override
     public void onResume() {
-        // TODO Auto-generated method stub
         super.onResume();
         if (from.equals("me")) {
             initMeInfo();
